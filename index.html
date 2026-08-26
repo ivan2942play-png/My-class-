@@ -4,821 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой Класс</title>
-    
+    <link rel="stylesheet" href="style.css">
+
 </head>
-
-<style>
-
-/* ==========================================================================
-   1. АНИМАЦИЯ ДЛЯ ПОМОЩНИКА ИИ «ВИТАПОК» И ИКОНКИ «ОПАСНО»
-   ========================================================================== */
-
-/* Мягкая пульсация и красное свечение вокруг иконки */
-.opacno {
-    animation: pulseDanger 2.5s infinite ease-in-out;
-}
-
-@keyframes pulseDanger {
-    0% {
-        transform: scale(1);
-        filter: drop-shadow(0 0 0px rgba(231, 76, 60, 0));
-    }
-    50% {
-        transform: scale(1.08); /* Иконка плавно приподнимается */
-        filter: drop-shadow(0 0 8px rgba(231, 76, 60, 0.7)); /* Появляется мягкое красное ореол-свечение */
-    }
-    100% {
-        transform: scale(1);
-        filter: drop-shadow(0 0 0px rgba(231, 76, 60, 0));
-    }
-}
-
-/* Эффект оживления текста ИИ при наведении */
-.AI {
-    transition: transform 0.3s ease;
-}
-
-.AI:hover {
-    transform: translateX(6px); /* Блок ИИ слегка сдвигается вправо */
-}
-
-/* ==========================================================================
-   2. ПЛАВНЫЙ ПОДЪЕМ КОЛОНОК ФУТЕРА
-   ========================================================================== */
-
-/* При наведении или нажатии на колонку она «всплывает» */
-.col {
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
-    border-radius: 12px;
-}
-
-.col:hover {
-    transform: translateY(-6px); /* Колонка красиво приподнимается вверх */
-}
-
-/* ==========================================================================
-   3. ПЛАВНОЕ ПОЯВЛЕНИЕ ЭЛЕМЕНТОВ ПРИ ЗАГРУЗКЕ СТРАНИЦЫ
-   ========================================================================== */
-
-/* Анимация всплытия снизу вверх для карточек и подвала */
-.class-intro-container, 
-footer, 
-.card {
-    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(25px); /* Блоки стартуют чуть ниже и невидимыми */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);    /* Плавно встают на свое место */
-    }
-}
-
-
-/* ==========================================================================
-   4. ТАКТИЛЬНЫЙ ОТКЛИК ДЛЯ ВСЕХ КНОПОК (ЭФФЕКТ НАЖАТИЯ)
-   ========================================================================== */
-
-button, .close-dialog-btn, .close-dialog-x {
-    transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease !important;
-}
-
-/* Эффект пружины: при нажатии пальцем кнопка слегка сжимается */
-button:active, .close-dialog-btn:active {
-    transform: scale(0.94) !important;
-}
-
-
-* {
-    box-shrink: border-box;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-  
-  body {
-  background-color: #f4f6f9;
-  color: #2c3e50;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
- 
-
- 
-
-
-.main-title {
-    margin-top: 10px;
-    margin-bottom: 30px;
-    font-size: 2.4rem;
-    color: #2c3e50;
-    text-align: center;
-}
-
-/* Сетка распределения колонок на ПК */
-.main-layout {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 30px;
-    width: 100%;
-    max-width: 920px;
-}
-
-.left-column, .right-column {
-    flex: 1;
-    width: 100%;
-    max-width: 445px;
-}
-
-.right-column {
-    display: flex;
-    flex-direction: column;
-}
-
-.section-subtitle {
-    font-size: 1.6rem;
-    color: #2c3e50;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* --- СЕКЦИЯ ШКОЛЫ --- */
-.school-section {
-    background: #fff;
-    border-radius: 20px;
-    padding: 25px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    margin-bottom: 25px;
-}
-
-.school-section h2 {
-    font-size: 1.6rem;
-    color: #2c3e50;
-    margin-bottom: 12px;
-    text-align: center;
-}
-
-.school-description {
-    font-size: 0.95rem;
-    color: #7f8c8d;
-    line-height: 1.5;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.school-features {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-}
-
-.feature-item {
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 10px 5px;
-    text-align: center;
-    border: 1px solid #eee;
-}
-
-.feature-icon { font-size: 1.5rem; margin-bottom: 4px; }
-.feature-title { font-size: 0.75rem; font-weight: bold; color: #2c3e50; margin-bottom: 2px; }
-.feature-text { font-size: 0.75rem; color: #7f8c8d; }
-
-/* --- СЕКЦИЯ УЧИТЕЛЯ --- */
-.teacher-card {
-    background: #fff;
-    border-radius: 20px;
-    padding: 25px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    border-left: 6px solid #e74c3c;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-/* Усмиряем блок-контейнер для фото учителя */
-.teacher-avatar-placeholder {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    border: 4px solid #e74c3c;
-    background: #e0e0e0;
-    margin-bottom: 15px;
-    
-    /* КРИТИЧЕСКИ ВАЖНО: прячем всё, что выходит за круг */
-    overflow: hidden; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Жёстко контролируем саму картинку внутри этого контейнера */
-.teacher-avatar-placeholder img {
-    width: 100%;
-    height: 100%;
-    
-    /* Умное масштабирование: картинка заполнит круг без искажения пропорций */
-    object-fit: cover; 
-    display: block;
-}
-
-/* На всякий случай фиксируем общую ширину карточки учителя, чтобы её не распирало */
-.teacher-card {
-    box-sizing: border-box;
-    width: 100%;
-    max-width: 420px;
-    background: #fff;
-    border-radius: 20px;
-    padding: 25px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    border-left: 6px solid #e74c3c;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-
-.teacher-status { font-size: 0.8rem; color: #e74c3c; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
-.teacher-name { font-size: 1.4rem; font-weight: bold; color: #2c3e50; margin-bottom: 4px; }
-.teacher-subject { font-size: 0.9rem; color: #3498db; font-weight: 600; margin-bottom: 12px; }
-.teacher-bio { font-size: 0.9rem; color: #7f8c8d; line-height: 1.4; }
-
-/* --- СЕКЦИЯ КАРУСЕЛИ --- */
-.carousel-container {
-    width: 100%;
-}
-
-.carousel-viewport {
-    overflow: hidden;
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    background: #fff;
-}
-
-.carousel-track {
-    display: flex;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    will-change: transform;
-}
-
-.card {
-    min-width: 100%;
-    flex-shrink: 0;
-    padding: 30px 20px;
-    text-align: center;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Делаем сам контейнер круглой рамкой */
-.avatar-placeholder {
-  width: 100px;           /* Укажи нужный размер круга */
-  height: 100px;
-  border-radius: 50%;      /* Делает блок круглым */
-  overflow: hidden;        /* Обрезает всё, что выходит за пределы круга */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid #00aaff; /* Голубая обводка, как на макете */
-}
-
-/* Настраиваем саму картинку внутри */
-.avatar-placeholder img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;       /* Картинка красиво заполнит круг без растяжения */
-}
-
-
-/* Фиксируем карточку, чтобы её не распирало от контента */
-.card {
-    min-width: 100%;
-    flex-shrink: 0;
-    padding: 30px 20px;
-    text-align: center;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-}
-
-
-.name { font-size: 1.4rem; font-weight: bold; color: #2c3e50; margin-bottom: 6px; }
-.role { font-size: 0.85rem; color: #3498db; font-weight: 600; text-transform: uppercase; margin-bottom: 10px; }
-.bio { font-size: 0.9rem; color: #7f8c8d; line-height: 1.4; }
-
-/* БЛОК УПРАВЛЕНИЯ (Решает проблему наложений) */
-.carousel-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
-    padding: 0 10px;
-}
-
-.btn {
-    background: #fff;
-    border: none;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    color: #2c3e50;
-    transition: background 0.2s, color 0.2s;
-}
-
-.btn:hover {
-    background: #3498db;
-    color: #fff;
-}
-
-.dots-container {
-    display: flex;
-    gap: 8px;
-}
-
-.dot {
-    width: 9px;
-    height: 9px;
-    background: #bdc3c7;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s, width 0.3s;
-}
-
-.dot.active {
-    background: #3498db;
-    width: 20px;
-    border-radius: 10px;
-}
-
-/* --- ПОЛНАЯ АДАПТИВНОСТЬ ДЛЯ СМАРТФОНОВ --- */
-@media (max-width: 850px) {
-    .main-layout {
-        flex-direction: column;
-        align-items: center;
-        gap: 25px;
-    }
-    
-    .left-column, .right-column {
-        max-width: 100%;
-    }
-    
-    .section-subtitle {
-        margin-top: 10px;
-    }
-}
-
-/* Кнопка вызова окна */
-.open-dialog-btn {
-    background: #3498db;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-    margin: 10px auto;
-    display: block;
-}
-
-.open-dialog-btn:hover { background: #2980b9; }
-.open-dialog-btn:active { transform: scale(0.98); }
-
-/* Стили самого тега dialog */
-/* Стили самого тега dialog с принудительным центрированием */
-.custom-dialog {
-    border: none;
-    border-radius: 20px;
-    padding: 0;
-    max-width: 400px;
-    width: calc(100% - 40px); /* Отступы по бокам на мобилках */
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.3s ease-out;
-
-    /* ТРИ СТРОКИ ДЛЯ ИДЕАЛЬНОГО ЦЕНТРИРОВАНИЯ: */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0; /* Сбрасываем дефолтные отступы браузера, которые могли мешать */
-}
-
-/* Изменяем анимацию, чтобы она не ломала центрирование transform */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -40%); /* Плавное всплытие снизу вверх */
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
-}
-
-.close-dialog-btn {
-    background: #3498db; /* Синяя кнопка в цвет темы */
-    color: #fff;
-    border: none;
-    padding: 9px 24px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
-    transition: all 0.2s ease;
-    display: inline-block;
-    margin-top: 5px;
-    margin-left: 13rem;
-}
-
-/* Эффект при наведении */
-.close-dialog-btn:hover {
-    background: #2980b9;
-    transform: translateY(-2px); /* Кнопка слегка приподнимается */
-    box-shadow: 0 6px 18px rgba(52, 152, 219, 0.3);
-}
-
-/* Эффект при нажатии */
-.close-dialog-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
-}
-
-/* ==========================================================================
-   Стиль самого диалогового окна (Контейнера)
-   ========================================================================== */
-.custom-dialog {
-    border: none;
-    border-radius: 24px; /* Мягкие скругленные углы */
-    padding: 30px 24px;
-    max-width: 400px;
-    width: calc(100% - 40px); /* Отступы по краям на экранах телефонов */
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Объемная мягкая тень */
-    background: #ffffff;
-    box-sizing: border-box;
-
-    /* Центрирование */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
-
-    /* Плавная анимация всплытия */
-    animation: fadeInDialog 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    overflow: visible; /* Чтобы крестик закрытия мог немного выходить за край */
-}
-
-/* Эффектное размытие и затемнение заднего фона */
-.custom-dialog::backdrop {
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(5px); /* Эффект матового стекла */
-    animation: fadeInBackdrop 0.3s ease-out;
-}
-
-/* ==========================================================================
-   Стили для текста и элементов внутри диалога
-   ========================================================================== */
-
-/* Общая обертка для контента */
-.dialog-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-/* Имя ученика / заголовок */
-.dialog-name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #2c3e50; /* Красивый темный оттенок вместо чисто черного */
-    margin: 15px 0 5px 0;
-}
-
-/* Роль (например, ШУТНИК КЛАССА) */
-.dialog-status {
-    font-size: 0.8rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1.5px; /* Разреженный текст */
-    color: #3498db; /* Синий цвет в тон кнопок */
-    margin-bottom: 15px;
-}
-
-/* Описание / Подробный текст */
-.dialog-description {
-    font-size: 0.95rem;
-    line-height: 1.6; /* Комфортное расстояние между строками */
-    color: #57606f; /* Мягкий серый цвет для легкого чтения */
-    margin-bottom: 20px;
-}
-
-/* Цитата или забавный факт (выделенный блок) */
-.dialog-quote {
-    background: #f1f2f6; /* Светло-серый фон плашки */
-    padding: 12px 16px;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    color: #747d8c;
-    font-style: italic;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 15px;
-    border-left: 4px solid #3498db; /* Синяя полоска слева */
-}
-
-/* ==========================================================================
-   Анимации
-   ========================================================================== */
-@keyframes fadeInDialog {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -45%) scale(0.95); /* Окно немного меньше и чуть ниже */
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
-
-@keyframes fadeInBackdrop {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Основная секция-обертка */
-.class-intro-section {
-    padding: 40px 20px;
-    background: #f8f9fa; /* Светлый ненавязчивый фон страницы */
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
-}
-
-/* Главный контейнер карточки класса */
-.class-intro-container {
-    background: #ffffff;
-    border-radius: 24px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Легкая тень */
-    max-width: 950px;
-    width: 100%;
-    overflow: hidden; /* Чтобы скругленные углы обрезали картинку */
-    display: flex;
-    flex-direction: column; /* На мобилках блоки идут друг за другом сверху вниз */
-}
-
-/* Блок для изображения */
-.class-intro-image-box {
-    width: 100%;
-    height: 250px; /* Фиксированная высота для телефонов */
-}
-
-/* Сама картинка */
-.class-intro-image-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Фотка аккуратно заполняет блок без растягивания и искажений */
-    display: block;
-}
-
-/* Блок с текстовым контентом */
-.class-intro-content {
-    padding: 30px 25px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-/* Заголовок секции */
-.class-intro-title {
-    font-size: 1.8rem;
-    color: #2c3e50;
-    margin-top: 0;
-    margin-bottom: 20px;
-    position: relative;
-    padding-bottom: 10px;
-}
-
-/* Красивая синяя полосочка под заголовком */
-.class-intro-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 60px;
-    height: 4px;
-    background: #3498db;
-    border-radius: 2px;
-}
-
-/* Текст описания */
-.class-intro-description {
-    font-size: 1rem;
-    line-height: 1.7; /* Удобный для чтения межстрочный интервал */
-    color: #57606f;
-    margin: 0;
-}
-
-/* АДАПТИВНОСТЬ: Стили для компьютеров и планшетов (экран больше 768px) */
-@media (min-width: 768px) {
-    .class-intro-container {
-        flex-direction: row; /* Выстраиваем картинку и текст в одну линию */
-    }
-    
-    .class-intro-image-box {
-        width: 45%; /* Картинка занимает чуть меньше половины ширины */
-        height: 380px; /* Увеличиваем высоту на больших экранах */
-    }
-    
-    .class-intro-content {
-        width: 55%; /* Текст занимает оставшуюся часть */
-        padding: 40px; /* Больше отступов для красоты */
-    }
-}
- 
-
-.textp{
-    padding: 10px;
-}
-
-.close-dialog-btn{
-    margin-bottom:20px;
-}
-
-/* Ровный контейнер для всего подвала */
-footer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start; /* Жестко выравнивает верхушки всех колонок по одной линии */
-    justify-content: space-between;
-    gap: 20px; /* Задаёт одинаковые и ровные зазоры между блоками вместо маргинов */
-    margin-top: 3rem;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-/* Блок ИИ Помощника */
-.AI {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex: 1 1 auto;
-}
-
-/* Колонки с текстом */
-.col {
-    display: block;
-    flex: 1 1 auto;
-    padding: 10px;
-    margin-left: 0; /* Убираем старый отступ, который косил текст при переносе строки! */
-}
-
-/* Усмиряем картинку, чтобы не прыгала */
-.opacno {
-    width: 45px;
-    height: 45px;
-    object-fit: cover;
-    display: block;
-}
-
-
-
-/* АДАПТИВНОСТЬ: На экранах побольше (планшеты и ПК) возвращаем все в одну линию */
-@media (min-width: 600px) {
-    .AI {
-        flex: 0 1 auto; /* Больше не занимает всю ширину экрана */
-    }
-    .col {
-        flex: 0 1 calc(25% - 20px); /* Аккуратные фиксированные колонки */
-    }
-}
-
-
-
-/* Центрируем блок «О нашем классе» */
-.class-intro-container {
-    margin: 0 auto !important; /* Авто-отступы слева и справа выровняют блок по центру */
-}
-
-/* Центрируем отдельную карточку классного руководителя */
-/* (Если у тебя для учителя используется класс .card) */
-.teacher-card {
-    margin: 20px auto !important; /* Выравнивает по центру и делает отступы сверху/снизу */
-    width: calc(100% - 40px);    /* Оставляем красивые зазоры до краев экрана смартфона */
-    max-width: 450px;            /* Чтобы на больших экранах карточка не растягивалась до бесконечности */
-}
-
-/* ==========================================================================
-   1. ПЕРЕЛИВАЮЩИЙСЯ ГРАДИЕНТНЫЙ ТЕКСТ (Для ИИ и Заголовков)
-   ========================================================================== */
-.AI h3, 
-.class-intro-title {
-    background: linear-gradient(90deg, #3498db, #8e44ad, #e74c3c, #3498db);
-    background-size: 300% 100%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientShift 6s infinite linear;
-}
-
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* ==========================================================================
-   2. ЭФФЕКТ «БЛИКА» (SHINE) НА КНОПКАХ
-   ========================================================================== */
-.close-dialog-btn, 
-.card button {
-    position: relative;
-    overflow: hidden; /* Чтобы блик не вылезал за границы кнопки */
-}
-
-/* Сам бегающий световой луч */
-.close-dialog-btn::after, 
-.card button::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -75%;
-    width: 50%;
-    height: 200%;
-    background: linear-gradient(
-        90deg, 
-        rgba(255,255,255,0) 0%, 
-        rgba(255,255,255,0.4) 50%, 
-        rgba(255,255,255,0) 100%
-    );
-    transform: rotate(25deg);
-    animation: buttonShine 4s infinite ease-in-out;
-}
-
-@keyframes buttonShine {
-    0% { left: -75%; }
-    20% { left: 125%; }
-    100% { left: 125%; } /* Пауза перед следующим пролетом блика */
-}
-
-/* ==========================================================================
-   3. ОЖИВЛЕНИЕ АВАТАРОК ОДНОКЛАССНИКОВ
-   ========================================================================== */
-.avatar-placeholder {
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease !important;
-}
-
-/* При наведении или тапе аватарка чуть увеличивается и поворачивается */
-.card:hover .avatar-placeholder,
-.avatar-placeholder:hover {
-    transform: scale(1.08) rotate(3deg) !important;
-    box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3) !important;
-}
-
-/* Сама фотка внутри круга при зуме плавно приближается */
-.avatar-placeholder img {
-    transition: transform 0.5s ease !important;
-}
-
-.card:hover .avatar-placeholder img {
-    transform: scale(1.1) !important;
-}
-
-
-
-</style>
-
-
-
 <body>
 
     <h1 class="main-title">Наш Любимый Класс</h1>
@@ -893,73 +81,10 @@ footer {
             <div class="carousel-container">
                 <div class="carousel-viewport">
                     <div class="carousel-track" id="track">
-                        
-                        <div class="card">
-                            <div class="avatar-placeholder"><img src="base64-image.de" alt="puk"></div>
-                            <div class="name">Петя Колесников</div>
-                            <div class="role">Добряк класса</div>
-                            <button class="open-dialog-btn" onclick="document.getElementById('PetDialog').showModal()">Узнать больше о Пете</button>
-
-<dialog class="custom-dialog" id="PetDialog">
-    
-    <button class="close-dialog-btn" onclick="document.getElementById('PetDialog').close()">Закрыть</button>
-    
-    <div class="dialog-content">
-        
-        <div class="avatar-placeholder">
-            <img src="Pe.jpg" alt="Фото">
-        </div>
-        
-        <h3 class="dialog-name">Петя Колесников</h3>
-        <div class="dialog-status">Добряк класса</div>
-        
-        <p class="dialog-description">
-            Очень добрый здоровяк нашего класса . Состоит в группе 81 . Плавает в воде , как торпеда с самонаведением на врага - безупречно.
-        </p>
-        
-        <div class="dialog-quote">
-            «Слово не птичко - шкибиди яичко»
-        </div>
-    </div>
-</dialog>
-                 
-                        </div>
-                        
-
-                        <div class="card">
-                            <div class="avatar-placeholder"><img src="Серёгин.jpg" alt="puk"></div>
-                            <div class="name">Вова Серёгин</div>
-                            <div class="role">Солнечный мальчик</div>
-                                              
-                            <button class="open-dialog-btn" onclick="document.getElementById('SerDialog').showModal()">Узнать больше о Серёгине</button>
-
-<dialog class="custom-dialog" id="SerDialog">
-    
-    <button class="close-dialog-btn" onclick="document.getElementById('SerDialog').close()">Закрыть</button>
-    
-    <div class="dialog-content">
-        
-        <div class="avatar-placeholder">
-            <img src="Серёгин.jpg" alt="Фото">
-        </div>
-        
-        <h3 class="dialog-name">Вова Серёгин</h3>
-        <div class="dialog-status">Солнечный мальчик</div>
-        
-        <p class="dialog-description">
-            Любит алгебру только ее, красивый ,накаченный смешной парень класа любит кушать,
-            учится "хорошо", играет в пабг. Состоит в группе 81
-        </p>
-        
-        <div class="dialog-quote">
-            «Сидя на месте чувствую как ёрзают , ведь всё тут сходит с рук, а для толпы я современный Айболит»
-        </div>
-    </div>
-</dialog>
-                        </div> 
+                         
 <div class="card">
                             <div class="avatar-placeholder"><img src="Карина.jpg" alt="puk"></div>
-                            <div class="name">Каримова Карина</div>
+                            <div class="name">Карина Каримова</div>
                             <div class="role">Умная/Гуманитарий</div>
                                               
                             <button class="open-dialog-btn" onclick="document.getElementById('KarDialog').showModal()">Узнать больше о Карине</button>
@@ -1018,42 +143,7 @@ footer {
 </dialog>
                             
                         </div>
-        
-
-                        <div class="card">
-                            <div class="avatar-placeholder"><img src="Я.jpg" alt="puk"></div>
-                            <div class="name">Набока Ваня</div>
-                            <div class="role">Опасный шпион</div>
-                                              
-                            <button class="open-dialog-btn" onclick="document.getElementById('VDialog').showModal()">Узнать больше о Ване</button>
-
-<dialog class="custom-dialog" id="VDialog">
-    
-    <button class="close-dialog-btn" onclick="document.getElementById('VDialog').close()">Закрыть</button>
-    
-    <div class="dialog-content">
-        
-        <div class="avatar-placeholder">
-            <img src="Я.jpg" alt="Фото">
-        </div>
-        
-        <h3 class="dialog-name">Набока Ваня</h3>
-        <div class="dialog-status">Опасный шпион</div>
-        
-        <p class="dialog-description">
-            Очень опасный шпион , который прекрасно шутит. 
-            Состоит в группе 81. Если бы замаскировался под сына чей-то матери , то женщина даже не заметила бы разницы.
-        </p>
-        
-        <div class="dialog-quote">
-            «Люблю убегать , кушать сырки и не люблю сидеть или стоять без движения.»
-        </div>
-    </div>
-</dialog>
-
-                        </div>
                         
-          
 
                         <div class="card">
                             <div class="avatar-placeholder"><img src="Тим.jpg" alt="puk"></div>
@@ -1085,37 +175,8 @@ footer {
     </div>
 </dialog>
 
+                            
                         </div>
-                        
-                        <div class="card">
-                            <div class="avatar-placeholder"><img src="Паша.jpg" alt="puk"></div>
-                            <div class="name">Паша Филин</div>
-                            <div class="role">Фембой</div>
-                                              
-                            <button class="open-dialog-btn" onclick="document.getElementById('PaDialog').showModal()">Узнать больше о Паше</button>
-<dialog class="custom-dialog" id="PaDialog">
-    
-    <button class="close-dialog-btn" onclick="document.getElementById('PaDialog').close()">Закрыть</button>
-    
-    <div class="dialog-content">
-        
-        <div class="avatar-placeholder">
-            <img src="Паша.jpg" alt="Фото">
-        </div>
-        
-        <h3 class="dialog-name">Паша Филин</h3>
-        <div class="dialog-status">Фембой</div>
-        
-        <p class="dialog-description">
-            Самый умнейший музыкант в мире. состоит в группе 81. Лучший друн и бойфренд анюті.
-        </p>
-        
-        <div class="dialog-quote">
-            « Любовь не птички, шкибиди иички »
-        </div>
-    </div>
-</dialog>
-                    </div>
                         
                         <div class="card">
                             <div class="avatar-placeholder"><img src="Полина.jpg" alt="puk"></div>
@@ -1147,6 +208,7 @@ footer {
     </div>
 </dialog>
                         </div>
+                        
                                                         <div class="card">
                             <div class="avatar-placeholder"><img src="Грач.jpg" alt="puk"></div>
                             <div class="name">Грач Испирян</div>
@@ -1177,6 +239,7 @@ footer {
     </div>
 </dialog>
                         </div>
+                        
                         
                         <div class="card">
                             <div class="avatar-placeholder"><img src="Лёша.jpg" alt="puk"></div>
@@ -1209,6 +272,294 @@ footer {
 </dialog>
                         </div>
                         
+                        
+                        <div class="card">
+                            <div class="avatar-placeholder"><img src="Дима.jpg" alt="puk"></div>
+                            <div class="name" >Дима Медведев</div>
+                            <div class="role">...</div>
+                            <button class="open-dialog-btn" onclick="document.getElementById('DimDialog').showModal()">Узнать больше о Диме</button>
+
+<dialog class="custom-dialog" id="DimDialog">
+    
+    <button class="close-dialog-btn" onclick="document.getElementById('DimDialog').close()">Закрыть</button>
+    
+    <div class="dialog-content">
+        
+        <div class="avatar-placeholder">
+            <img src="Дима.jpg" alt="Фото">
+        </div>
+        
+        <h3 class="dialog-name" >Дима Медведев</h3>
+        <div class="dialog-status">...</div>
+        
+        <p class="dialog-description">
+            Описание
+        </p>
+        
+        <div class="dialog-quote">
+            «Фраза»
+        </div>
+    </div>
+</dialog>
+                 
+                        </div>
+                        
+                        
+                        <div class="card">
+                            <div class="avatar-placeholder"><img src="Тася.jpg" alt="puk"></div>
+                            <div class="name" >Тася Зырянова</div>
+                            <div class="role">Роль</div>
+                            <button class="open-dialog-btn" onclick="document.getElementById('TasDialog').showModal()">Узнать больше о Тасе</button>
+
+<dialog class="custom-dialog" id="TasDialog">
+    
+    <button class="close-dialog-btn" onclick="document.getElementById('TasDialog').close()">Закрыть</button>
+    
+    <div class="dialog-content">
+        
+        <div class="avatar-placeholder">
+            <img src="Тася.jpg" alt="Фото">
+        </div>
+        
+        <h3 class="dialog-name" >Тася Зырянова</h3>
+        <div class="dialog-status">Роль в классе</div>
+        
+        <p class="dialog-description">
+            Описание
+        </p>
+        
+        <div class="dialog-quote">
+            «Фраза»
+        </div>
+    </div>
+</dialog>
+                 
+                        </div>
+                        
+                        
+                        <div class="card">
+                            <div class="avatar-placeholder"><img src="Даша.jpg" alt="puk"></div>
+                            <div class="name" >Даша Степанова</div>
+                            <div class="role">...</div>
+                            <button class="open-dialog-btn" onclick="document.getElementById('DashDialog').showModal()">Узнать больше о Диме</button>
+
+<dialog class="custom-dialog" id="DashDialog">
+    
+    <button class="close-dialog-btn" onclick="document.getElementById('DashDialog').close()">Закрыть</button>
+    
+    <div class="dialog-content">
+        
+        <div class="avatar-placeholder">
+            <img src="Дима.jpg" alt="Фото">
+        </div>
+        
+        <h3 class="dialog-name" >Даша Степанова</h3>
+        <div class="dialog-status">Роль в классе</div>
+        
+        <p class="dialog-description">
+            Описание
+        </p>
+        
+        <div class="dialog-quote">
+            «Фраза»
+        </div>
+    </div>
+</dialog>
+                 
+                        </div>
+                        
+                        
+                        <div class="card">
+                            <div class="avatar-placeholder"><img src="Женя2.jpg" alt="puk"></div>
+                            <div class="name" >Женя Васильев</div>
+                            <div class="role">...</div>
+                            <button class="open-dialog-btn" onclick="document.getElementById('JeDialog').showModal()">Узнать больше о Диме</button>
+
+<dialog class="custom-dialog" id="JeDialog">
+    
+    <button class="close-dialog-btn" onclick="document.getElementById('JeDialog').close()">Закрыть</button>
+    
+    <div class="dialog-content">
+        
+        <div class="avatar-placeholder">
+            <img src="Женя2.jpg" alt="Фото">
+        </div>
+        
+        <h3 class="dialog-name" >Женя Васильев</h3>
+        <div class="dialog-status">Роль в классе</div>
+        
+        <p class="dialog-description">
+            Описание
+        </p>
+        
+        <div class="dialog-quote">
+            «Фраза»
+        </div>
+    </div>
+</dialog>
+                 
+                        </div>
+                        
+                        
+                        <div class="card">
+                            <div class="avatar-placeholder"><img src="Дима.jpg" alt="puk"></div>
+                            <div class="name" >Соня Кондяк</div>
+                            <div class="role">...</div>
+                            <button class="open-dialog-btn" onclick="document.getElementById('DimDialog').showModal()">Узнать больше о Диме</button>
+
+<dialog class="custom-dialog" id="DimDialog">
+    
+    <button class="close-dialog-btn" onclick="document.getElementById('DimDialog').close()">Закрыть</button>
+    
+    <div class="dialog-content">
+        
+        <div class="avatar-placeholder">
+            <img src="Дима.jpg" alt="Фото">
+        </div>
+        
+        <h3 class="dialog-name" >Соня Кондяк</h3>
+        <div class="dialog-status">...</div>
+        
+        <p class="dialog-description">
+            Описание
+        </p>
+        
+        <div class="dialog-quote">
+            «Фраза»
+        </div>
+    </div>
+</dialog>
+                 
+                        </div>
+                        
+                        
+                        <div class="card">
+                            <div class="avatar-placeholder"><img src="Дима.jpg" alt="puk"></div>
+                            <div class="name" >Саша Анненков</div>
+                            <div class="role">...</div>
+                            <button class="open-dialog-btn" onclick="document.getElementById('DimDialog').showModal()">Узнать больше о Диме</button>
+
+<dialog class="custom-dialog" id="DimDialog">
+    
+    <button class="close-dialog-btn" onclick="document.getElementById('DimDialog').close()">Закрыть</button>
+    
+    <div class="dialog-content">
+        
+        <div class="avatar-placeholder">
+            <img src="Дима.jpg" alt="Фото">
+        </div>
+        
+        <h3 class="dialog-name" >Саша Анненков</h3>
+        <div class="dialog-status">...</div>
+        
+        <p class="dialog-description">
+            Описание
+        </p>
+        
+        <div class="dialog-quote">
+            «Фраза»
+        </div>
+    </div>
+</dialog>
+                 
+                        </div>
+                        
+                        
+                        <div class="card">
+                            <div class="avatar-placeholder"><img src="Дима.jpg" alt="puk"></div>
+                            <div class="name" >Дарина Филина</div>
+                            <div class="role">...</div>
+                            <button class="open-dialog-btn" onclick="document.getElementById('DimDialog').showModal()">Узнать больше о Диме</button>
+
+<dialog class="custom-dialog" id="DimDialog">
+    
+    <button class="close-dialog-btn" onclick="document.getElementById('DimDialog').close()">Закрыть</button>
+    
+    <div class="dialog-content">
+        
+        <div class="avatar-placeholder">
+            <img src="Дима.jpg" alt="Фото">
+        </div>
+        
+        <h3 class="dialog-name" >Дарина Филина</h3>
+        <div class="dialog-status">...</div>
+        
+        <p class="dialog-description">
+            Описание
+        </p>
+        
+        <div class="dialog-quote">
+            «Фраза»
+        </div>
+    </div>
+</dialog>
+                        </div>
+                        
+                        
+                        <div class="card">
+                            <div class="avatar-placeholder"><img src="Дима.jpg" alt="puk"></div>
+                            <div class="name" >Женя Бонадыченко</div>
+                            <div class="role">...</div>
+                            <button class="open-dialog-btn" onclick="document.getElementById('DimDialog').showModal()">Узнать больше о Диме</button>
+
+<dialog class="custom-dialog" id="DimDialog">
+    
+    <button class="close-dialog-btn" onclick="document.getElementById('DimDialog').close()">Закрыть</button>
+    
+    <div class="dialog-content">
+        
+        <div class="avatar-placeholder">
+            <img src="Дима.jpg" alt="Фото">
+        </div>
+        
+        <h3 class="dialog-name" >Женя Бонадыченко</h3>
+        <div class="dialog-status">...</div>
+        
+        <p class="dialog-description">
+            Описание
+        </p>
+        
+        <div class="dialog-quote">
+            «Фраза»
+        </div>
+    </div>
+</dialog>
+                        </div>
+                        
+                        
+                           <div class="card">
+                            <div class="avatar-placeholder"><img src="Дима.jpg" alt="puk"></div>
+                            <div class="name" >Саша Киррилов</div>
+                            <div class="role">...</div>
+                            <button class="open-dialog-btn" onclick="document.getElementById('DimDialog').showModal()">Узнать больше о Диме</button>
+
+<dialog class="custom-dialog" id="DimDialog">
+    
+    <button class="close-dialog-btn" onclick="document.getElementById('DimDialog').close()">Закрыть</button>
+    
+    <div class="dialog-content">
+        
+        <div class="avatar-placeholder">
+            <img src="Дима.jpg" alt="Фото">
+        </div>
+        
+        <h3 class="dialog-name" >Саша Киррилов</h3>
+        <div class="dialog-status">...</div>
+        
+        <p class="dialog-description">
+            Описание
+        </p>
+        
+        <div class="dialog-quote">
+            «Фраза»
+        </div>
+    </div>
+</dialog>
+                        </div>
+                        
+                        
+ 
+
                 </div>
                 </div>
                 <div class="carousel-controls">
@@ -1222,6 +573,135 @@ footer {
     </div>
     
     
+    <!-- Премиум-секция (Гордость класса / VIP) -->
+<section class="premium-section">
+  <h2 class="premium-title">✨ Мои Дноклассники</h2>
+    
+
+    <button class="premium-btn" onclick="document.getElementById('VaDialog').showModal()">
+      Узнать больше о Ване
+    </button>
+      <dialog class="premium-dialog" id="VaDialog">
+    
+    <button class="premium-btn1" onclick="document.getElementById('VaDialog').close()">Закрыть</button>
+    
+    <div class="dialog-content">
+        
+        <div class="premium-avatar">
+            <img src="Я.jpg" alt="Фото">
+        </div>
+        
+        <h3 class="dialog-name" >Набока Ваня</h3>
+        <div class="premium-role">Опасный шпион</div>
+        
+        <p class="premium-dialog-description">
+            Очень опасный шпион , который прекрасно шутит. 
+            Состоит в группе 81. Люблю убегать , кушать сырки и не люблю сидеть или стоять без движения
+        </p>
+        
+        <div class="premium-dialog-quote">
+            «Если бы замаскировался под сына чей-то матери , то женщина даже не заметила бы разницы.»
+        </div>
+    </div>
+</dialog>
+  </div>
+
+    
+    
+    <button class="premium-btn" onclick="document.getElementById('PaDialog').showModal()">
+      Узнать больше о Паше
+    </button>
+      <dialog class="premium-dialog" id="PaDialog">
+    
+    <button class="premium-btn1" onclick="document.getElementById('PaDialog').close()">Закрыть</button>
+    
+    <div class="dialog-content">
+        
+        <div class="premium-avatar">
+            <img src="Паша.jpg" alt="Фото">
+        </div>
+        
+        <h3 class="dialog-name" >Паша Филин</h3>
+        <div class="premium-role">Фембой</div>
+        
+        <p class="premium-dialog-description">
+            Самый умнейший музыкант в мире. состоит в группе 81. Лучший друн и бойфренд анюті.
+        </p>
+        
+        <div class="premium-dialog-quote">
+            «Любовь не птички, шкибиди иички »
+        </div>
+    </div>
+</dialog>
+  </div>
+
+
+
+    <button class="premium-btn" onclick="document.getElementById('PetDialog').showModal()">
+      Узнать больше о Пете
+    </button>
+      <dialog class="premium-dialog" id="PetDialog">
+    
+    <button class="premium-btn1" onclick="document.getElementById('PetDialog').close()">Закрыть</button>
+    
+    <div class="dialog-content">
+        
+        <div class="premium-avatar">
+            <img src="Pe.jpg" alt="Фото">
+        </div>
+        
+        <h3 class="dialog-name" >Петя Колесников</h3>
+        <div class="premium-role">Добряк класса</div>
+        
+        <p class="premium-dialog-description">
+            Очень добрый здоровяк нашего класса . Состоит в группе 81 . Плавает в воде , как торпеда с самонаведением на врага - безупречно.
+        </p>
+        
+        <div class="premium-dialog-quote">
+            «Слово не птичко - шкибиди яичко»
+        </div>
+    </div>
+</dialog>
+  </div>
+    
+
+    <button class="premium-btn" onclick="document.getElementById('SerDialog').showModal()">
+      Узнать больше о Серёгине
+    </button>
+      <dialog class="premium-dialog" id="SerDialog">
+    
+    <button class="premium-btn1" onclick="document.getElementById('SerDialog').close()">Закрыть</button>
+    
+    <div class="dialog-content">
+        
+        <div class="premium-avatar">
+            <img src="Серёгин.jpg" alt="Фото">
+        </div>
+        
+        <h3 class="dialog-name" > Вова Серёгин</h3>
+        <div class="premium-role">Солнечный мальчик</div>
+        
+        <p class="premium-dialog-description">
+            Любит алгебру только ее, красивый ,накаченный смешной парень класа любит кушать,
+            учится "хорошо", играет в пабг. Состоит в группе 81
+        </p>
+        
+        <div class="premium-dialog-quote">
+            «Сидя на месте чувствую как ёрзают , ведь всё тут сходит с рук, а для толпы я современный Айболит»
+        </div>
+    </div>
+</dialog>
+  </div>
+    
+    
+    
+    
+    
+</section>
+
+    
+    
+                            
     <footer>
         <div class="AI">
         <img src="Витапок.jpg" alt="Опасно" class="opacno">
@@ -1240,60 +720,8 @@ footer {
             <p>ПукПук</p>
         </div>
     </footer>
-    
-    
-    
-    <script>
-  
-        const track = document.getElementById('track');
-        const cards = document.querySelectorAll('.card');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const dotsContainer = document.getElementById('dotsContainer');
+ 
+<script src="JavaScript.js"></script>
 
-        let currentIndex = 0;
-        const totalCards = cards.length;
-
-        cards.forEach((_, index) => {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => {
-                currentIndex = index;
-                updateCarousel();
-            });
-            dotsContainer.appendChild(dot);
-        });
-
-        const dots = document.querySelectorAll('.dot');
-
-        function updateCarousel() {
-            const width = cards[0].clientWidth;
-            track.style.transform = `translateX(-${currentIndex * width}px)`;
-            
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[currentIndex].classList.add('active');
-        }
-
-        window.addEventListener('resize', updateCarousel);
-
-        nextBtn.addEventListener('click', () => {
-            if (currentIndex < totalCards - 1) {
-                currentIndex++;
-            } else {
-                currentIndex = 0;
-            }
-            updateCarousel();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-            } else {
-                currentIndex = totalCards - 1;
-            }
-            updateCarousel();
-        });
-    </script>
 </body>
 </html>
