@@ -48,3 +48,24 @@
             updateCarousel();
         });
 
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+const body = document.body;
+
+// Проверяем, была ли включена темная тема ранее
+if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-theme');
+    themeToggleBtn.textContent = '☀️ Светлая тема';
+}
+
+themeToggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark-theme');
+    
+    if (body.classList.contains('dark-theme')) {
+        localStorage.setItem('theme', 'dark');
+        themeToggleBtn.textContent = '☀️ Светлая тема';
+    } else {
+        localStorage.setItem('theme', 'light');
+        themeToggleBtn.textContent = '🌙 Тёмная тема';
+    }
+});
+
