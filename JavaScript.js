@@ -69,3 +69,23 @@ themeToggleBtn.addEventListener('click', () => {
     }
 });
 
+
+
+// ===== Удобство на ПК =====
+
+// Листание карусели стрелками ← → на клавиатуре
+document.addEventListener('keydown', (e) => {
+    if (document.querySelector('dialog[open]')) return; // не листаем, пока открыто окно
+    if (e.key === 'ArrowRight') nextBtn.click();
+    if (e.key === 'ArrowLeft') prevBtn.click();
+});
+
+// Закрытие всплывающего окна кликом по тёмному фону (Esc работает сам)
+document.querySelectorAll('dialog').forEach((dlg) => {
+    dlg.addEventListener('click', (e) => {
+        const r = dlg.getBoundingClientRect();
+        const outside = e.clientX < r.left || e.clientX > r.right ||
+                        e.clientY < r.top  || e.clientY > r.bottom;
+        if (outside) dlg.close();
+    });
+});
