@@ -1041,22 +1041,6 @@ body.dark-theme .dialog-quote {
 
 body.dark-theme .feature-title { font-size: 0.75rem; font-weight: bold; color: #C3C3C3; margin-bottom: 2px; }
 
-
-
-
-
-
-
-
-
-/* =====================================================================
-   АДАПТАЦИЯ ПОД ПК И НОУТБУКИ (экраны от 851px)
-   Всё ниже работает только на широких экранах — мобильная версия
-   и планшеты в вертикальной ориентации не затронуты.
-   ===================================================================== */
-
-/* Блок «Наш любимый класс» сам решает, как ему лечь (картинка сверху или слева),
-   исходя из ширины своей колонки, а не ширины всего окна */
 .class-intro-section {
     container: intro / inline-size;
 }
@@ -1073,7 +1057,6 @@ body.dark-theme .feature-title { font-size: 0.75rem; font-weight: bold; color: #
         margin-bottom: 40px;
     }
 
-    /* ---------- Главная сетка: две колонки на всю ширину экрана ---------- */
     .main-layout {
         display: grid;
         grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
@@ -1089,7 +1072,7 @@ body.dark-theme .feature-title { font-size: 0.75rem; font-weight: bold; color: #
         min-width: 0;
     }
 
-    /* Карусель «прилипает» при прокрутке, пока читаешь левую колонку */
+    
     .right-column {
         position: sticky;
         top: 70px;
@@ -1098,8 +1081,7 @@ body.dark-theme .feature-title { font-size: 0.75rem; font-weight: bold; color: #
     .section-subtitle {
         font-size: 1.9rem;
     }
-
-    /* ---------- О школе ---------- */
+    
     .school-section {
         padding: 35px;
     }
@@ -1131,13 +1113,10 @@ body.dark-theme .feature-title { font-size: 0.75rem; font-weight: bold; color: #
     .feature-title { font-size: 0.9rem; }
     .feature-text  { font-size: 0.9rem; }
 
-    /* ---------- Блок «Наш любимый класс» ---------- */
     .class-intro-section {
         padding: 0 0 25px;
     }
 
-    /* Сбрасываем старое правило «от 768px всегда в строку» —
-       теперь решает ширина колонки (см. @container ниже) */
     .class-intro-container {
         flex-direction: column;
     }
@@ -1177,7 +1156,6 @@ body.dark-theme .feature-title { font-size: 0.75rem; font-weight: bold; color: #
         }
     }
 
-    /* ---------- Учитель ---------- */
     .teacher-card {
         width: 100%;
         max-width: none;
@@ -1189,8 +1167,7 @@ body.dark-theme .feature-title { font-size: 0.75rem; font-weight: bold; color: #
     .teacher-subject { font-size: 1rem; }
     .teacher-bio     { font-size: 1rem; line-height: 1.55; }
 
-    /* ---------- Карусель одноклассников ---------- */
-    .card {
+        .card {
         padding: 40px 30px 30px;
     }
 
@@ -1236,7 +1213,6 @@ body.dark-theme .feature-title { font-size: 0.75rem; font-weight: bold; color: #
         width: 26px;
     }
 
-    /* ---------- Всплывающие окна ---------- */
     .custom-dialog,
     body.dark-theme .custom-dialog {
         max-width: 520px;
@@ -1259,7 +1235,6 @@ body.dark-theme .feature-title { font-size: 0.75rem; font-weight: bold; color: #
         backdrop-filter: blur(5px);
     }
 
-    /* Кнопки «Закрыть» — справа, без жёстких отступов в rem */
     .close-dialog-btn,
     .premium-btn1 {
         display: block;
@@ -1287,7 +1262,6 @@ body.dark-theme .feature-title { font-size: 0.75rem; font-weight: bold; color: #
         font-size: 1rem;
     }
 
-    /* ---------- «Мои одноклассники» (премиум) — сетка кнопок ---------- */
     .premium-section,
     body.dark-theme .premium-section {
         display: grid;
@@ -1312,8 +1286,7 @@ body.dark-theme .feature-title { font-size: 0.75rem; font-weight: bold; color: #
         transform: translateY(-3px);
         box-shadow: 0 10px 22px rgba(245, 158, 11, 0.5);
     }
-
-    /* ---------- Подвал ---------- */
+    
     footer {
         width: 100%;
         max-width: 1280px;
@@ -1338,7 +1311,6 @@ body.dark-theme .feature-title { font-size: 0.75rem; font-weight: bold; color: #
     }
 }
 
-/* Большие мониторы (Full HD и выше) */
 @media (min-width: 1500px) {
     .main-layout,
     footer {
@@ -1356,7 +1328,6 @@ body.dark-theme .feature-title { font-size: 0.75rem; font-weight: bold; color: #
     }
 }
 
-/* Широкий ноутбук: учитель — в строку (фото слева, текст справа) */
 @media (min-width: 1100px) {
     .teacher-card {
         flex-direction: row;

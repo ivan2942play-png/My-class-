@@ -51,7 +51,6 @@
 const themeToggleBtn = document.getElementById('themeToggleBtn');
 const body = document.body;
 
-// Проверяем, была ли включена темная тема ранее
 if (localStorage.getItem('theme') === 'dark') {
     body.classList.add('dark-theme');
     themeToggleBtn.textContent = '☀️ Светлая тема';
@@ -71,16 +70,12 @@ themeToggleBtn.addEventListener('click', () => {
 
 
 
-// ===== Удобство на ПК =====
-
-// Листание карусели стрелками ← → на клавиатуре
 document.addEventListener('keydown', (e) => {
-    if (document.querySelector('dialog[open]')) return; // не листаем, пока открыто окно
+    if (document.querySelector('dialog[open]')) return;
     if (e.key === 'ArrowRight') nextBtn.click();
     if (e.key === 'ArrowLeft') prevBtn.click();
 });
 
-// Закрытие всплывающего окна кликом по тёмному фону (Esc работает сам)
 document.querySelectorAll('dialog').forEach((dlg) => {
     dlg.addEventListener('click', (e) => {
         const r = dlg.getBoundingClientRect();
